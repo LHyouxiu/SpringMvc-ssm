@@ -15,14 +15,14 @@ import java.util.List;
 @RequestMapping("/book")
 public class BookController {
 
-    @Autowired
-    @Qualifier("BookServiceImpl")
-    private BookService bookService;
-//    private final BookService bookService;
-//
-//    public BookController(@Qualifier("BookServiceImpl") BookService bookService) {
-//        this.bookService = bookService;
-//    }
+//    @Autowired
+//    @Qualifier("BookServiceImpl")
+//    private BookService bookService;
+    private final BookService bookService;
+
+    public BookController(@Qualifier("BookServiceImpl") BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @RequestMapping("/allBook")
     public String list(Model model){
@@ -32,6 +32,7 @@ public class BookController {
         return "allBook";
     }
 
+//    新增内容
     @RequestMapping("/toAddBook")
     public String toAddPaper(){
         return "addBook";
@@ -44,6 +45,7 @@ public class BookController {
         return "redirect:/book/allBook";
     }
 
+//    修改内容
     @RequestMapping("/toUpdateBook")
     public String toUpdateBook(Model model, int id){
         Books books = bookService.queryBookById(id);
