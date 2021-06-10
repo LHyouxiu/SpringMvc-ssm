@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <import resource="spring/spring-dao.xml"/>
+    <import resource="spring/spring-service.xml"/>
+    <import resource="spring/spring-mvc.xml"/>
 
-    <!-- 扫描service相关的bean -->
-        <context:component-scan base-package="com.kuang.service" />
-
-        <!--BookServiceImpl注入到IOC容器中-->
-        <bean id="BookServiceImpl" class="com.kuang.service.BookServiceImpl">
-            <property name="bookMapper" ref="bookMapper"/>
-        </bean>
-        <!-- 配置事务管理器 -->
-        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-            <!-- 注入数据库连接池 -->
-            <property name="dataSource" ref="dataSource" />
-        </bean>
 
 </beans>
